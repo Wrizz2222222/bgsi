@@ -1,0 +1,46 @@
+-- Bubble Gum Simulator Infinity Script (Light Obfuscation)
+local a=loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+local b=a:MakeWindow({Name="Bubble Gum Sim Infinity",HidePremium=false,SaveConfig=true,ConfigFolder="BubbleConfig"})
+
+local c=false
+local d=false
+
+function e()
+    while c do
+        pcall(function()
+            game:GetService("ReplicatedStorage").Events.Bubble:FireServer("BlowBubble")
+        end)
+        wait(0.1)
+    end
+end
+
+function f()
+    while d do
+        pcall(function()
+            game:GetService("ReplicatedStorage").Events.Bubble:FireServer("SellBubble")
+        end)
+        wait(1)
+    end
+end
+
+local g=b:MakeTab({Name="Main",Icon="rbxassetid://4483345998",PremiumOnly=false})
+
+g:AddToggle({
+    Name="Auto Blow Bubbles",
+    Default=false,
+    Callback=function(h)
+        c=h
+        if h then e() end
+    end
+})
+
+g:AddToggle({
+    Name="Auto Sell Bubbles",
+    Default=false,
+    Callback=function(i)
+        d=i
+        if i then f() end
+    end
+})
+
+a:Init()
